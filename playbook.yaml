@@ -1,0 +1,14 @@
+- name: Initialize
+  hosts: all
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Change the hostname
+      ansible.builtin.hostname:
+        name: '{{ ansible_play_hosts }}'
+
+    - name: Update root password
+      ansible.builtin.user:
+        name: root
+        password: '{{ root_password }}'
